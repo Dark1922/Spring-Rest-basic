@@ -1,4 +1,5 @@
-package br.com.springboot.curso_jdev_treinamento.model;
+package br.com.springboot.model;
+
 
 import java.io.Serializable;
 

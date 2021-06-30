@@ -1,4 +1,4 @@
-package br.com.springboot.curso_jdev_treinamento.controllers;
+package br.com.springboot.controllers;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.springboot.curso_jdev_treinamento.model.Usuario;
-import br.com.springboot.curso_jdev_treinamento.repository.UsuarioRepository;
+import br.com.springboot.model.Usuario;
+import br.com.springboot.repository.UsuarioRepository;
 
 @RestController
 public class GreetingsController {
@@ -28,7 +28,7 @@ public class GreetingsController {
 		return "Curso  Spring Boot API: " + name + "!";
 	}
 	
-	@RequestMapping(value = "/olamundo/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "olamundo/{nome}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String retornaOlaMundo(@PathVariable String nome) {
 		
