@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,14 +65,36 @@ public class GreetingsController {
 		return new ResponseEntity<Usuario>(user, HttpStatus.CREATED);
 	}
 	
+	@PutMapping(value = "atualizar") //mapeia a url
+	@ResponseBody //descrição  da resposta
+	public ResponseEntity<Usuario> atualizar(@RequestBody Usuario usuario) { //recebe os dados para salvar
+		
+		//ele vai atualizar roda diretamente no banco retorna estado persistente pra gente de um usuario
+		Usuario user = usuarioRepository.saveAndFlush(usuario); //pode retorna esse usuario salvo user
+		
+		//retorna new com o response passando o user salvo e created pq vai criar o usuarioq
+		return new ResponseEntity<Usuario>(user, HttpStatus.OK);
+	}
+	
+	
 	@DeleteMapping(value = "delete") //mapeia a url
 	@ResponseBody //descrição  da resposta
-	public ResponseEntity<String> delete(@RequestParam Long iduser) { //recebe os dados para salvar
+	public ResponseEntity<String> delete(@RequestParam Long iduser) { //codigo usuario recebe por parametro
 		
 		//qnd deleta n instacia pra outro atributo pq n tem retorno
 		usuarioRepository.deleteById(iduser); // deleta pelo id long
 		
 		//retorna new com o response passando o user salvo e created pq vai criar o usuarioq
 		return new ResponseEntity<String>("User deletado com sucesso", HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "buscaruserid") //mapeia a url
+	@ResponseBody //descrição  da resposta
+	public ResponseEntity<Usuario> buscaruserid(@RequestParam(name =  "iduser") Long iduser) { //recebe os dados para consultar
+		
+		Usuario usuario = usuarioRepository.findById(iduser).get(); //  
+		
+		//retorna new com o response passando o user salvo e created pq vai criar o usuarioq
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
 }
