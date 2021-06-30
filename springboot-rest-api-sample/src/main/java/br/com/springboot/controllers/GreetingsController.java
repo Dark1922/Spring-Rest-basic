@@ -102,4 +102,17 @@ public class GreetingsController {
 		//retorna new com o response passando o user salvo e created pq vai criar o usuarioq
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
+	
+	
+	
+		
+	@GetMapping(value = "buscarPorNome") //mapeia a url
+	@ResponseBody //descrição  da resposta
+	public ResponseEntity<List<Usuario>>buscarPorNome(@RequestParam(name =  "name") String name) { //recebe os dados para consultar
+		
+		List<Usuario> usuario = usuarioRepository.buscarPorNome(name); // pesquisa no banco 
+		
+		//retorna pra tela lista de usuario pq pode retorna mais de um
+		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
+	}
 }
