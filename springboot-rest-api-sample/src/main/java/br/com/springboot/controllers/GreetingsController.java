@@ -27,23 +27,7 @@ public class GreetingsController {
 	@Autowired //ic cd cdi noss  injeção de dependencias
 	private UsuarioRepository usuarioRepository;
  
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-	public String greetingText(@PathVariable String name) {
-		return "Curso  Spring Boot API: " + name + "!";
-	}
 	
-	@RequestMapping(value = "olamundo/{nome}", method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-	public String retornaOlaMundo(@PathVariable String nome) {
-		
-		Usuario usuario = new Usuario();
-		usuario.setNome(nome);
-		usuarioRepository.save(usuario); //grava no banco de dados
-		
-		return "Olá mundo: " + nome;
-	}
-
 	@GetMapping(value = "/listatodos")
 	@ResponseBody //Retorna os dados para o corpo dá resposta
 	public ResponseEntity<List<Usuario>> listaUsuario() {
@@ -86,12 +70,14 @@ public class GreetingsController {
 	@ResponseBody //descrição  da resposta
 	public ResponseEntity<String> delete(@RequestParam Long iduser) { //codigo usuario recebe por parametro
 		
+    		
 		//qnd deleta n instacia pra outro atributo pq n tem retorno
 		usuarioRepository.deleteById(iduser); // deleta pelo id long
 		
 		//retorna new com o response passando o user salvo e created pq vai criar o usuarioq
 		return new ResponseEntity<String>("User deletado com sucesso", HttpStatus.OK);
-	}
+     
+     }
 	
 	@GetMapping(value = "buscaruserid") //mapeia a url
 	@ResponseBody //descrição  da resposta
@@ -117,3 +103,7 @@ public class GreetingsController {
 		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
 	}
 }
+//testando jar no projeto
+//C:\Users\DarkJohn\git\springrestcrud\springboot-rest-api-sample>mvn clean package
+// <maven.test.skip>true</maven.test.skip></properties>
+//C:\Users\DarkJohn\git\springrestcrud\springboot-rest-api-sample\target>java -jar springboot-rest-api-sample-1.0.0-SNAPSHOT.jar
