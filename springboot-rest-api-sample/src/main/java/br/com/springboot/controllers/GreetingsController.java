@@ -67,7 +67,12 @@ public class GreetingsController {
 	
 	@PutMapping(value = "atualizar") //mapeia a url
 	@ResponseBody //descrição  da resposta
-	public ResponseEntity<Usuario> atualizar(@RequestBody Usuario usuario) { //recebe os dados para salvar
+	public ResponseEntity<?> atualizar(@RequestBody Usuario usuario) { //recebe os dados para salvar
+		//qnd tem ? pode retorna qlq coisa string como mensagem e objeto no retorno
+		if (usuario.getId() == null) {
+			
+			return new ResponseEntity<String>("Id não foi informado para atualização.", HttpStatus.OK);
+		}
 		
 		//ele vai atualizar roda diretamente no banco retorna estado persistente pra gente de um usuario
 		Usuario user = usuarioRepository.saveAndFlush(usuario); //pode retorna esse usuario salvo user
