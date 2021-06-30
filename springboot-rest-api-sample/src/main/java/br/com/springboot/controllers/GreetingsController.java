@@ -110,7 +110,8 @@ public class GreetingsController {
 	@ResponseBody //descrição  da resposta
 	public ResponseEntity<List<Usuario>>buscarPorNome(@RequestParam(name =  "name") String name) { //recebe os dados para consultar
 		
-		List<Usuario> usuario = usuarioRepository.buscarPorNome(name); // pesquisa no banco 
+		//toUpperCase busca maiusculo tb
+		List<Usuario> usuario = usuarioRepository.buscarPorNome(name.trim().toUpperCase()); // pesquisa no banco .trim tira o espaço
 		
 		//retorna pra tela lista de usuario pq pode retorna mais de um
 		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
