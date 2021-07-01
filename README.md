@@ -17,7 +17,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Bootstrap
 - JavaScript/Jquery/Ajax
 - SpringBoot Rest Api
-- Jdk 11
+- Jdk 8
 - Postgres
 
 
@@ -26,7 +26,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ```bash
 #Clonar repositório
-git clone git@github.com:Dark1922/Semana-Dev-Superior.git
+git@github.com:Dark1922/Spring-Rest-basic.git
 
 #Executar o projeto
 spring.datasource.url=jdbc:postgresql://localhost:5432/seubanco?createDatabaseIfNotExist=true
