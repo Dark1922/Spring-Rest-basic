@@ -93,7 +93,7 @@ public class GreetingsController {
 	
 		
 	@GetMapping(value = "buscarPorNome") //mapeia a url
-	@ResponseBody //descrição  da resposta
+	@ResponseBody //descrição  da resposta //aceita duas anotações body e param
 	public ResponseEntity<List<Usuario>>buscarPorNome(@RequestParam(name =  "name") String name) { //recebe os dados para consultar
 		
 		//toUpperCase busca maiusculo tb
